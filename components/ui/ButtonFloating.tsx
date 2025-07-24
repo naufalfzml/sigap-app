@@ -20,11 +20,11 @@ interface ButtonProps extends PressableProps {
   children: React.ReactNode;
 }
 
-const Button = React.forwardRef<View, ButtonProps>(
+const ButtonFloating = React.forwardRef<View, ButtonProps>(
   ({ variant = "default", className, textClassName, children, ...props }, ref) => {
     return (
       <Pressable
-        className={`py-3 px-4 rounded-xl flex-row items-center justify-center ${viewVariants[variant]} ${className}`}
+        className={`py-3 px-4 rounded-full flex-row items-center justify-center ${viewVariants[variant]} ${className}`}
         {...props}
       >
         <Text className={`font-semibold text-sm ${textVariants[variant]} ${textClassName}`}>
@@ -35,4 +35,5 @@ const Button = React.forwardRef<View, ButtonProps>(
   }
 );
 
-export { Button };
+export { ButtonFloating };
+

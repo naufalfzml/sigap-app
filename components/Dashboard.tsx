@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
-import { ScrollView, View, Text } from 'react-native';
-import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { ScrollView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import FloatingActionButton from './FloatingActionButton';
 import InteractiveMap from './InteractiveMap';
 import ReportFeed from './ReportFeed';
-import FloatingActionButton from './FloatingActionButton';
 import UserStats from './UserStats';
-import { useRouter } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Dashboard() {
   const [selectedReport, setSelectedReport] = useState(null);
   const router = useRouter();
 
   return (
-    // SafeAreaView memastikan konten tidak tertutup oleh status bar atau notch
     <SafeAreaView className="flex-1 bg-sigap-teal">
       {/* Header dengan User Stats */}
       <View className="bg-white/90 p-4 border-b border-sigap-lightblue/20">
@@ -22,26 +21,26 @@ export default function Dashboard() {
       </View>
 
       {/* Gunakan ScrollView agar konten bisa di-scroll jika lebih panjang dari layar */}
-      <ScrollView>
+      <ScrollView className="px-2">
         {/* Tombol Navigasi Utama */}
-        <View className="px-4 pt-4">
-          <View className="flex-row space-x-2 mb-4">
-            <Button className="flex-1" onPress={() => router.push('/(tabs)/dashboard')}>
-              Beranda
+        <View className="space-y-4 px-4 mt-2">
+          <View className="flex-row gap-2 my-2">
+            <Button className="" onPress={() => router.push('/(tabs)/dashboard')}>
+              <Text className="font-semibold">Beranda</Text>
             </Button>
             <Button
               variant="outline"
-              className="flex-1"
+              className="flex-1 bg-white"
               onPress={() => router.push('/(tabs)/riwayat')}
             >
-              Riwayat Saya
+              <Text className="text-sigap-lightteal font-semibold">Riwayat Saya</Text>
             </Button>
             <Button
               variant="outline"
-              className="flex-1"
+              className="flex-1 bg-white"
               onPress={() => router.push('/(tabs)/laporan')}
             >
-              Semua Laporan
+              <Text className="text-sigap-lightteal font-semibold">Semua Laporan</Text>
             </Button>
           </View>
         </View>
@@ -56,17 +55,17 @@ export default function Dashboard() {
         </View>
 
         {/* Quick Stats */}
-        <View className="px-4 pb-4">
-          <View className="flex-row justify-between space-x-3">
-            <Card className="bg-white/95 p-3 items-center flex-1">
+        <View className="px-2 pb-4">
+          <View className="flex-row gap-2 mx-2">
+            <Card className="bg-white p-3 items-center flex-1">
               <Text className="text-sigap-blue text-xl font-bold">24</Text>
               <Text className="text-sigap-dark text-xs">Laporan Aktif</Text>
             </Card>
-            <Card className="bg-white/95 p-3 items-center flex-1">
+            <Card className="bg-white p-3 items-center flex-1">
               <Text className="text-sigap-blue text-xl font-bold">156</Text>
               <Text className="text-sigap-dark text-xs">Selesai</Text>
             </Card>
-            <Card className="bg-white/95 p-3 items-center flex-1">
+            <Card className="bg-white p-3 items-center flex-1">
               <Text className="text-sigap-blue text-xl font-bold">89%</Text>
               <Text className="text-sigap-dark text-xs">Tingkat Selesai</Text>
             </Card>

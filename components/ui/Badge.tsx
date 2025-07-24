@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 const variants = {
   default: "bg-black",
@@ -22,10 +22,14 @@ interface BadgeProps {
 
 const Badge = ({ variant = "default", className, textClassName, children }: BadgeProps) => {
   return (
-    <View className={`py-0.5 px-2.5 rounded-full inline-flex items-center ${variants[variant]} ${className}`}>
-      <Text className={`text-xs font-semibold ${textVariants[variant]} ${textClassName}`}>
-        {children}
-      </Text>
+    <View className={`py-0.5 px-2.5 rounded-lg inline-flex items-center ${variants[variant]} ${className}`}>
+      {typeof children === 'string' ? (
+        <Text className={`text-xs font-semibold ${textVariants[variant]} ${textClassName}`}>
+          {children}
+        </Text>
+      ) : (
+        children
+      )}
     </View>
   );
 };

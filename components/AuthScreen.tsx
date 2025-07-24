@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { View, Text, Pressable, Image } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
+import { Input } from '@/components/ui/Input';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
-import { Card } from '@/components/ui/Card';
-import { Mail, Lock, User, Eye, EyeOff } from 'lucide-react-native';
+import { Eye, EyeOff } from 'lucide-react-native';
+import React, { useState } from 'react';
+import { Image, Pressable, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function AuthScreen() {
   const [isLogin, setIsLogin] = useState(true);
@@ -14,7 +14,6 @@ export default function AuthScreen() {
   const router = useRouter();
 
   const handleSubmit = () => {
-    // Di aplikasi nyata, tambahkan logika login
     router.replace('/(tabs)/dashboard');
   };
 
@@ -25,20 +24,21 @@ export default function AuthScreen() {
           <View className="items-center mb-8">
             <Image source={require('@/assets/images/logo-sigap.webp')} className="w-20 h-16" resizeMode="contain" />
             <Text className="text-2xl font-bold text-sigap-dark mt-4">
-              {isLogin ? "Selamat Datang" : "Bergabung dengan SIGAP"}
+              {isLogin ? "Selamat Datang Kembali" : "Bergabung dengan SIGAP"}
             </Text>
+            <Text className="text-center text-gray-500 mt-2 leading-6">Masuk ke akun Anda untuk melanjutkan, melaporkan, dan memantau</Text>
           </View>
 
           <View className="space-y-5">
             {/* Input fields */}
-            <View>
-              <Mail className="absolute left-3 top-3.5 z-10" color="gray" size={20}/>
-              <Input placeholder="Email atau Nomor Telepon" className="pl-12" />
+            <View className="my-4">
+              <Text className="font-bold my-2">Email atau Nomer HP</Text>
+              <Input placeholder="tes@example.com"/>
             </View>
             <View>
-              <Lock className="absolute left-3 top-3.5 z-10" color="gray" size={20}/>
-              <Input placeholder="Kata Sandi" secureTextEntry={!showPassword} className="pl-12 pr-12"/>
-              <Pressable onPress={() => setShowPassword(!showPassword)} className="absolute right-3 top-3.5">
+              <Text className="font-bold my-2">Password</Text>
+              <Input placeholder="Kata Sandi" secureTextEntry={!showPassword}/>
+              <Pressable onPress={() => setShowPassword(!showPassword)} className="absolute right-3 mt-12">
                   {showPassword ? <EyeOff color="gray" size={20}/> : <Eye color="gray" size={20}/>}
               </Pressable>
             </View>
