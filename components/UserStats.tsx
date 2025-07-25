@@ -33,8 +33,8 @@ export default function UserStats() {
           <Text className="text-sigap-dark text-xs ml-1.5 mr-4">Poin</Text>
         </View>
 
-        <View className="w-12 h-12 bg-sigap-lightteal rounded-lg items-center justify-center">
-          <Image source={require('@/assets/images/logo-sigap.webp')} className="w-12 h-12" resizeMode="contain" />
+        <View className="w-12 h-12 bg-sigap-teal rounded-xl items-center justify-center">
+          <Image source={require('@/assets/images/sigap-no-bg.png')} className="w-10 h-10 mr-1.5" resizeMode="contain" />
         </View>
       </View>
     </View>

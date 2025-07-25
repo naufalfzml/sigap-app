@@ -17,6 +17,9 @@ module.exports = {
           lightteal: "#D8F6F9",
           dark: "#0B0F2C",         
         }
+      },
+      fontFamily: {
+        sans: ['Urbanist-Regular', 'sans-serif'],
       }
     },
   },

@@ -19,30 +19,61 @@ export default function ReportHistory() {
 
   return (
     <SafeAreaView className="flex-1 bg-sigap-lightteal">
-      <View className="p-4 border-b border-gray-200 bg-white flex-row items-center">
-        <Pressable onPress={() => selectedReport ? setSelectedReport(null) : router.back()}>
+      {/* Header */}
+      <View className="p-4 border-b border-gray-200 bg-white flex-row items-center shadow-sm">
+        <Pressable 
+          onPress={() => selectedReport ? setSelectedReport(null) : router.back()}
+          className="p-2 -ml-2 rounded-full"
+        >
           <ArrowLeft size={24} color="#297DD4" />
         </Pressable>
-        <Text className="text-lg font-bold text-sigap-dark ml-4">
+        <Text className="text-lg font-bold text-sigap-dark ml-2">
           {selectedReport ? `Detail #${selectedReport}` : 'Riwayat Laporan'}
         </Text>
       </View>
 
-      <ScrollView className="p-4">
+      {/* Content */}
+      <ScrollView className="p-4" showsVerticalScrollIndicator={false}>
         {mockReports.map((report) => (
-          <Card key={report.id} className="p-4 mb-4">
-            <Text className="text-base font-bold text-sigap-dark">{report.title}</Text>
-            <Text className="text-xs text-gray-500 mb-2">#{report.id}</Text>
-            {report.status === 'completed' && <Badge className="bg-green-100"><Text className="text-green-700">Selesai</Text></Badge>}
-            {report.status === 'progress' && <Badge className="bg-yellow-100"><Text className="text-yellow-700">Dikerjakan</Text></Badge>}
-            <View className="flex-row items-center mt-2 text-gray-600">
-                <MapPin size={14} color="gray"/>
-                <Text className="text-sm ml-1">{report.location}</Text>
+          <Card key={report.id} className="p-4 mb-4 shadow-sm">
+            {/* Report Title */}
+            <Text className="text-base font-bold text-sigap-dark mb-1">
+              {report.title}
+            </Text>
+            
+            {/* Report ID */}
+            <Text className="text-xs text-gray-500 mb-3">
+              #{report.id}
+            </Text>
+            
+            {/* Status Badge */}
+            <View className="mb-3">
+              {report.status === 'completed' && (
+                <Badge className="bg-green-100 self-start">
+                  <Text className="text-green-700 text-sm font-medium">Selesai</Text>
+                </Badge>
+              )}
+              {report.status === 'progress' && (
+                <Badge className="bg-yellow-100 self-start">
+                  <Text className="text-yellow-700 text-sm font-medium">Dikerjakan</Text>
+                </Badge>
+              )}
             </View>
-             <Button variant="outline" className="mt-4" onPress={() => setSelectedReport(report.id)}>
-                <Eye size={16} color="#297DD4" className="pr-2"/>
-                <Text className="text-sigap-blue">Lihat Detail</Text>
-             </Button>
+            
+            {/* Location */}
+            <View className="flex-row items-center mb-4">
+              <MapPin size={14} color="#6B7280" />
+              <Text className="text-sm text-gray-600 ml-2">{report.location}</Text>
+            </View>
+            
+            {/* Detail Button */}
+            <Pressable 
+              onPress={() => setSelectedReport(report.id)}
+              className="flex-row items-center justify-center bg-transparent border border-sigap-blue rounded-lg py-3 px-4"
+            >
+              <Eye size={16} color="#297DD4" />
+              <Text className="text-sigap-blue font-medium ml-2">Lihat Detail</Text>
+            </Pressable>
           </Card>
         ))}
       </ScrollView>

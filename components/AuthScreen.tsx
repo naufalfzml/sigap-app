@@ -22,7 +22,7 @@ export default function AuthScreen() {
       <SafeAreaView className="flex-1 justify-center p-6">
         <Card className="p-8">
           <View className="items-center mb-8">
-            <Image source={require('@/assets/images/logo-sigap.webp')} className="w-20 h-16" resizeMode="contain" />
+            <Image source={require('@/assets/images/sigap-no-bg.png')} className="w-26 h-10 mr-4 mb-2" resizeMode="contain" />
             <Text className="text-2xl font-bold text-sigap-dark mt-4">
               {isLogin ? "Selamat Datang Kembali" : "Bergabung dengan SIGAP"}
             </Text>
@@ -31,8 +31,8 @@ export default function AuthScreen() {
 
           <View className="space-y-5">
             {/* Input fields */}
-            <View className="my-4">
-              <Text className="font-bold my-2">Email atau Nomer HP</Text>
+            <View className="mt-4 mb-2">
+              <Text className="font-bold mb-2">Email atau Nomer HP</Text>
               <Input placeholder="tes@example.com"/>
             </View>
             <View>
@@ -43,12 +43,12 @@ export default function AuthScreen() {
               </Pressable>
             </View>
             
-            <Button onPress={handleSubmit} className="mt-4">
+            <Button onPress={handleSubmit} className="mt-6" style={{ borderRadius: 6 }}>
               <Text className="text-white font-bold">{isLogin ? "Masuk" : "Daftar"}</Text>
             </Button>
           </View>
           
-          <Pressable onPress={() => setIsLogin(!isLogin)} className="mt-8">
+          <Pressable onPress={() => setIsLogin(!isLogin)} className="mt-6">
             <Text className="text-center text-sigap-dark">
               {isLogin ? "Belum punya akun? " : "Sudah punya akun? "}
               <Text className="font-bold text-sigap-blue">

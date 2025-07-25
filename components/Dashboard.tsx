@@ -33,14 +33,14 @@ export default function Dashboard() {
               className="flex-1 bg-white"
               onPress={() => router.push('/(tabs)/riwayat')}
             >
-              <Text className="text-sigap-lightteal font-semibold">Riwayat Saya</Text>
+              <Text className="text-sigap-blue font-semibold">Riwayat Saya</Text>
             </Button>
             <Button
               variant="outline"
               className="flex-1 bg-white"
               onPress={() => router.push('/(tabs)/laporan')}
             >
-              <Text className="text-sigap-lightteal font-semibold">Semua Laporan</Text>
+              <Text className="text-sigap-blue font-semibold">Semua Laporan</Text>
             </Button>
           </View>
         </View>
@@ -77,7 +77,7 @@ export default function Dashboard() {
           <View className="flex-row items-center justify-between mb-4">
             <Text className="text-sigap-dark font-semibold text-lg">Laporan Terdekat</Text>
             <Button variant="ghost" onPress={() => router.push("/(tabs)/laporan")}>
-              Lihat Semua
+              <Text className="text-sigap-dark">Lihat Semua</Text>
             </Button>
           </View>
           <ReportFeed />
