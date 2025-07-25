@@ -13,6 +13,7 @@ export default function ReportWizard() {
   const [currentStep, setCurrentStep] = useState(1);
   const [reportData, setReportData] = useState({
     images: [],
+    title: "",
     location: { 
       lat: -6.2088, 
       lng: 106.8456, 
@@ -419,27 +420,66 @@ export default function ReportWizard() {
   );
 
   const renderStep2 = () => (
-    <View style={{ padding: 24 }}>
-      {/* Title */}
-      <Text style={{
-        fontSize: 24,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        color: '#0B0F2C',
-        marginBottom: 8
-      }}>
-        Lokasi & Deskripsi
-      </Text>
+      <View style={{ padding: 24 }}>
+        
+        {/* Title */}
+        <Text style={{
+          fontSize: 24,
+          fontWeight: 'bold',
+          textAlign: 'center',
+          color: '#0B0F2C',
+          marginBottom: 8
+        }}>
+          Judul, Lokasi & Deskripsi
+        </Text>
 
-      <Text style={{
-        fontSize: 16,
-        textAlign: 'center',
-        color: '#0B0F2C',
-        opacity: 0.7,
-        marginBottom: 32
-      }}>
-        Konfirmasi lokasi dan berikan deskripsi singkat
-      </Text>
+        <Text style={{
+          fontSize: 16,
+          textAlign: 'center',
+          color: '#0B0F2C',
+          opacity: 0.7,
+          marginBottom: 32
+        }}>
+          Konfirmasi lokasi dan berikan rincian laporan
+        </Text>
+
+        {/* ====================================================== */}
+        {/* ============ INPUT JUDUL LAPORAN DITAMBAHKAN ========= */}
+        {/* ====================================================== */}
+        <View style={{ marginBottom: 16 }}>
+          <Text style={{
+            fontSize: 16,
+            fontWeight: '500',
+            color: '#0B0F2C',
+            marginBottom: 8
+          }}>
+            Judul Laporan
+          </Text>
+          <TextInput
+            style={{
+              borderWidth: 1,
+              borderColor: 'rgba(77, 177, 236, 0.3)',
+              borderRadius: 8,
+              padding: 12,
+              fontSize: 16,
+              color: '#0B0F2C'
+            }}
+            placeholder="cth: Jalan Berlubang di Depan Sekolah"
+            placeholderTextColor="#8C8C8C"
+            value={reportData.title}
+            onChangeText={(text) => setReportData(prev => ({ ...prev, title: text }))}
+            maxLength={100}
+          />
+          <Text style={{
+            fontSize: 12,
+            color: '#0B0F2C',
+            opacity: 0.6,
+            marginTop: 4,
+            textAlign: 'right'
+          }}>
+            {reportData.title.length}/100 karakter
+          </Text>
+        </View>
 
       {/* Location Card */}
       <View style={{
@@ -605,237 +645,269 @@ export default function ReportWizard() {
         </View>
       </View>
 
-      {/* Description */}
-      <View style={{ marginBottom: 24 }}>
+
+        {/* Description */}
+        <View style={{ marginBottom: 24 }}>
+          <Text style={{
+            fontSize: 16,
+            fontWeight: '500',
+            color: '#0B0F2C',
+            marginBottom: 8
+          }}>
+            Deskripsi Masalah
+          </Text>
+          <TextInput
+            style={{
+              borderWidth: 1,
+              borderColor: 'rgba(77, 177, 236, 0.3)',
+              borderRadius: 8,
+              padding: 12,
+              minHeight: 100,
+              textAlignVertical: 'top',
+              fontSize: 16,
+              color: '#0B0F2C'
+            }}
+            placeholder="Jelaskan masalah yang ditemukan secara lebih rinci..."
+            placeholderTextColor="#8C8C8C"
+            value={reportData.description}
+            onChangeText={(text) => setReportData(prev => ({ ...prev, description: text }))}
+            multiline
+            maxLength={500}
+          />
+          <Text style={{
+            fontSize: 12,
+            color: '#0B0F2C',
+            opacity: 0.6,
+            marginTop: 4,
+            textAlign: 'right'
+          }}>
+            {reportData.description.length}/500 karakter
+          </Text>
+        </View>
+
+        {/* Navigation Buttons */}
+        <View style={{ flexDirection: 'row', gap: 12 }}>
+          <Pressable
+            onPress={() => setCurrentStep(1)}
+            style={{
+              flex: 1,
+              backgroundColor: 'transparent',
+              borderWidth: 1,
+              borderColor: '#297DD4',
+              paddingVertical: 16,
+              borderRadius: 8,
+              alignItems: 'center'
+            }}
+          >
+            <Text style={{ color: '#297DD4', fontSize: 14, fontWeight: '600' }}>
+              Kembali
+            </Text>
+          </Pressable>
+          <Pressable
+            // Validasi sekarang memeriksa judul DAN deskripsi
+            onPress={() => setCurrentStep(3)}
+            disabled={!reportData.title.trim() || !reportData.description.trim()}
+            style={{
+              flex: 1,
+              backgroundColor: reportData.title.trim() && reportData.description.trim() ? '#297DD4' : '#D9D9D9',
+              paddingVertical: 16,
+              borderRadius: 8,
+              alignItems: 'center'
+            }}
+          >
+            <Text style={{
+              color: reportData.title.trim() && reportData.description.trim() ? 'white' : '#8C8C8C',
+              fontSize: 14,
+              fontWeight: '600'
+            }}>
+              Lanjutkan
+            </Text>
+          </Pressable>
+        </View>
+      </View>
+    );
+
+  const renderStep3 = () => (
+      <View style={{ padding: 24 }}>
+        {/* Title */}
         <Text style={{
-          fontSize: 16,
-          fontWeight: '500',
+          fontSize: 24,
+          fontWeight: 'bold',
+          textAlign: 'center',
           color: '#0B0F2C',
           marginBottom: 8
         }}>
-          Deskripsi Masalah
+          Tinjau & Kirim
         </Text>
-        <TextInput
-          style={{
-            borderWidth: 1,
-            borderColor: 'rgba(77, 177, 236, 0.3)',
-            borderRadius: 8,
-            padding: 12,
-            minHeight: 100,
-            textAlignVertical: 'top',
-            fontSize: 16,
-            color: '#0B0F2C'
-          }}
-          placeholder="Jelaskan masalah yang Anda temukan secara singkat..."
-          placeholderTextColor="#8C8C8C"
-          value={reportData.description}
-          onChangeText={(text) => setReportData(prev => ({ ...prev, description: text }))}
-          multiline
-          maxLength={500}
-        />
-        <Text style={{
-          fontSize: 12,
-          color: '#0B0F2C',
-          opacity: 0.6,
-          marginTop: 4,
-          textAlign: 'right'
-        }}>
-          {reportData.description.length}/500 karakter
-        </Text>
-      </View>
 
-      {/* Navigation Buttons */}
-      <View style={{ flexDirection: 'row', gap: 12 }}>
-        <Pressable
-          onPress={() => setCurrentStep(1)}
-          style={{
-            flex: 1,
-            backgroundColor: 'transparent',
-            borderWidth: 1,
-            borderColor: '#297DD4',
-            paddingVertical: 16,
-            borderRadius: 8,
-            alignItems: 'center'
-          }}
-        >
-          <Text style={{ color: '#297DD4', fontSize: 14, fontWeight: '600' }}>
-            Kembali
-          </Text>
-        </Pressable>
-        <Pressable
-          onPress={() => setCurrentStep(3)}
-          disabled={!reportData.description.trim()}
-          style={{
-            flex: 1,
-            backgroundColor: reportData.description.trim() ? '#297DD4' : '#D9D9D9',
-            paddingVertical: 16,
-            borderRadius: 8,
-            alignItems: 'center'
-          }}
-        >
+        <Text style={{
+          fontSize: 16,
+          textAlign: 'center',
+          color: '#0B0F2C',
+          opacity: 0.7,
+          marginBottom: 32
+        }}>
+          Periksa kembali laporan Anda sebelum mengirim
+        </Text>
+
+        {/* ====================================================== */}
+        {/* ========= TINJAUAN JUDUL LAPORAN DITAMBAHKAN ========= */}
+        {/* ====================================================== */}
+        <View style={{
+          backgroundColor: 'white',
+          borderRadius: 12,
+          padding: 16,
+          marginBottom: 16,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 3.84,
+          elevation: 5,
+        }}>
           <Text style={{
-            color: reportData.description.trim() ? 'white' : '#8C8C8C',
-            fontSize: 14,
-            fontWeight: '600'
+            fontSize: 18,
+            fontWeight: '600',
+            color: '#0B0F2C',
+            marginBottom: 12
           }}>
-            Lanjutkan
+            Judul Laporan
           </Text>
-        </Pressable>
-      </View>
-    </View>
-  );
-
-  const renderStep3 = () => (
-    <View style={{ padding: 24 }}>
-      {/* Title */}
-      <Text style={{
-        fontSize: 24,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        color: '#0B0F2C',
-        marginBottom: 8
-      }}>
-        Tinjau & Kirim
-      </Text>
-
-      <Text style={{
-        fontSize: 16,
-        textAlign: 'center',
-        color: '#0B0F2C',
-        opacity: 0.7,
-        marginBottom: 32
-      }}>
-        Periksa kembali laporan Anda sebelum mengirim
-      </Text>
-
-      {/* Review Images */}
-      <View style={{
-        backgroundColor: 'white',
-        borderRadius: 12,
-        padding: 16,
-        marginBottom: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3.84,
-        elevation: 5,
-      }}>
-        <Text style={{
-          fontSize: 18,
-          fontWeight: '600',
-          color: '#0B0F2C',
-          marginBottom: 12
-        }}>
-          Bukti Foto
-        </Text>
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-          {reportData.images.map((image, index) => (
-            <Image
-              key={index}
-              source={{ uri: image.uri }}
-              style={{
-                width: (width - 80) / 3,
-                height: (width - 80) / 3,
-                borderRadius: 8
-              }}
-              resizeMode="cover"
-            />
-          ))}
-        </View>
-      </View>
-
-      {/* Review Location */}
-      <View style={{
-        backgroundColor: 'white',
-        borderRadius: 12,
-        padding: 16,
-        marginBottom: 16,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3.84,
-        elevation: 5,
-      }}>
-        <Text style={{
-          fontSize: 18,
-          fontWeight: '600',
-          color: '#0B0F2C',
-          marginBottom: 12
-        }}>
-          Lokasi
-        </Text>
-        <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }}>
-          <MapPin size={16} color="#297DD4" style={{ marginTop: 2 }} />
-          <Text style={{ fontSize: 14, color: '#0B0F2C', flex: 1 }}>
-            {reportData.location.address}
+          <Text style={{ fontSize: 14, color: '#0B0F2C', opacity: 0.8 }}>
+            {reportData.title}
           </Text>
         </View>
-      </View>
+        {/* ====================================================== */}
+        {/* ================ AKHIR TINJAUAN JUDUL ================ */}
+        {/* ====================================================== */}
 
-      {/* Review Description */}
-      <View style={{
-        backgroundColor: 'white',
-        borderRadius: 12,
-        padding: 16,
-        marginBottom: 24,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3.84,
-        elevation: 5,
-      }}>
-        <Text style={{
-          fontSize: 18,
-          fontWeight: '600',
-          color: '#0B0F2C',
-          marginBottom: 12
+        {/* Review Images */}
+        <View style={{
+          backgroundColor: 'white',
+          borderRadius: 12,
+          padding: 16,
+          marginBottom: 16,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 3.84,
+          elevation: 5,
         }}>
-          Deskripsi
-        </Text>
-        <Text style={{ fontSize: 14, color: '#0B0F2C', opacity: 0.8 }}>
-          {reportData.description}
-        </Text>
-      </View>
+          <Text style={{
+            fontSize: 18,
+            fontWeight: '600',
+            color: '#0B0F2C',
+            marginBottom: 12
+          }}>
+            Bukti Foto
+          </Text>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+            {reportData.images.map((image, index) => (
+              <Image
+                key={index}
+                source={{ uri: image.uri }}
+                style={{
+                  width: (width - 88) / 3, // Disesuaikan sedikit agar pas
+                  height: (width - 88) / 3,
+                  borderRadius: 8
+                }}
+                resizeMode="cover"
+              />
+            ))}
+          </View>
+        </View>
 
-      {/* Navigation Buttons */}
-      <View style={{ flexDirection: 'row', gap: 12 }}>
-        <Pressable
-          onPress={() => setCurrentStep(2)}
-          style={{
-            flex: 1,
-            backgroundColor: 'transparent',
-            borderWidth: 1,
-            borderColor: '#297DD4',
-            paddingVertical: 16,
-            borderRadius: 8,
-            alignItems: 'center'
-          }}
-        >
-          <Text style={{ color: '#297DD6', fontSize: 14, fontWeight: '600' }}>
-            Kembali
+        {/* Review Location */}
+        <View style={{
+          backgroundColor: 'white',
+          borderRadius: 12,
+          padding: 16,
+          marginBottom: 16,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 3.84,
+          elevation: 5,
+        }}>
+          <Text style={{
+            fontSize: 18,
+            fontWeight: '600',
+            color: '#0B0F2C',
+            marginBottom: 12
+          }}>
+            Lokasi
           </Text>
-        </Pressable>
-        <Pressable
-          onPress={handleSubmit}
-          style={{
-            flex: 1,
-            backgroundColor: '#297DD4',
-            paddingVertical: 16,
-            borderRadius: 8,
-            alignItems: 'center',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            gap: 8
-          }}
-        >
-          <Send size={16} color="white" />
-          <Text style={{ color: 'white', fontSize: 14, fontWeight: '600' }}>
-            Kirim Laporan
+          <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8 }}>
+            <MapPin size={16} color="#297DD4" style={{ marginTop: 2 }} />
+            <Text style={{ fontSize: 14, color: '#0B0F2C', flex: 1 }}>
+              {reportData.location.address}
+            </Text>
+          </View>
+        </View>
+
+        {/* Review Description */}
+        <View style={{
+          backgroundColor: 'white',
+          borderRadius: 12,
+          padding: 16,
+          marginBottom: 24,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 2 },
+          shadowOpacity: 0.1,
+          shadowRadius: 3.84,
+          elevation: 5,
+        }}>
+          <Text style={{
+            fontSize: 18,
+            fontWeight: '600',
+            color: '#0B0F2C',
+            marginBottom: 12
+          }}>
+            Deskripsi
           </Text>
-        </Pressable>
+          <Text style={{ fontSize: 14, color: '#0B0F2C', opacity: 0.8 }}>
+            {reportData.description}
+          </Text>
+        </View>
+
+        {/* Navigation Buttons */}
+        <View style={{ flexDirection: 'row', gap: 12 }}>
+          <Pressable
+            onPress={() => setCurrentStep(2)}
+            style={{
+              flex: 1,
+              backgroundColor: 'transparent',
+              borderWidth: 1,
+              borderColor: '#297DD4',
+              paddingVertical: 16,
+              borderRadius: 8,
+              alignItems: 'center'
+            }}
+          >
+            <Text style={{ color: '#297DD4', fontSize: 14, fontWeight: '600' }}>
+              Kembali
+            </Text>
+          </Pressable>
+          <Pressable
+            onPress={handleSubmit}
+            style={{
+              flex: 1,
+              backgroundColor: '#297DD4',
+              paddingVertical: 16,
+              borderRadius: 8,
+              alignItems: 'center',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              gap: 8
+            }}
+          >
+            <Send size={16} color="white" />
+            <Text style={{ color: 'white', fontSize: 14, fontWeight: '600' }}>
+              Kirim Laporan
+            </Text>
+          </Pressable>
+        </View>
       </View>
-    </View>
-  );
+    );
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#7ED9F8' }}>

@@ -12,20 +12,20 @@ export default function ReportCard({ report }) {
     
     // Tentukan warna badge berdasarkan status
     const statusColor = {
-        "Baru": "bg-blue-100 text-blue-800",
-        "Dikerjakan": "bg-yellow-100 text-yellow-800",
-        "Selesai": "bg-green-100 text-green-800",
+        "Pending": "bg-red-100 text-red-700",
+        "Dikerjakan": "bg-yellow-100 text-yellow-700",
+        "Selesai": "bg-green-100 text-green-700",
     };
 
     return (
         <Pressable onPress={() => router.push(`/laporan/${report.id}`)}>
             <Card className="mb-4 mx-4">
-                <Image source={{ uri: report.image }} className="w-full h-32 rounded-t-lg" />
+                <Image source={ report.image } className="w-full h-32 rounded-t-lg" />
                 <View className="p-3">
                     <View className="flex-row justify-between items-start">
                         <Text className="text-base font-bold text-sigap-dark flex-1 pr-2 ml-1" numberOfLines={2}>{report.title}</Text>
                         <Badge className={`${statusColor[report.status]}`}>
-                            <Text className={`text-xs font-semibold ${statusColor[report.status].split(' ')[1]}`}>{report.status}</Text>
+                            <Text className={`text-xs font-bold ${statusColor[report.status].split(' ')[1]}`}>{report.status}</Text>
                         </Badge>
                     </View>
                     

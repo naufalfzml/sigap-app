@@ -10,15 +10,15 @@ export default function UserStats() {
       <View className="flex-row items-center space-x-3">
         <Avatar className="h-12 w-12 border-2 border-sigap-lightblue">
           <AvatarFallback className="bg-sigap-lightteal">
-            <Text className="text-sigap-dark font-semibold">OG</Text>
+            <Text className="text-sigap-dark font-semibold">DP</Text>
           </AvatarFallback>
         </Avatar>
         <View>
-          <Text className="text-sigap-dark font-semibold text-lg mx-2">Opal Ganteng</Text>
+          <Text className="text-sigap-dark font-semibold text-lg mx-2">Dylansius Putra</Text>
           <Badge className="bg-sigap-blue px-2.5 mt-1 mx-2" textClassName="text-white text-xs">
             <View className="flex-row items-center">
               <Trophy size={11} color="white" className="" />
-              <Text className="text-white text-xs font-bold">  Pahlawan Kota</Text>
+              <Text className="text-white text-xs font-bold"> Pahlawan Kota</Text>
             </View>
           </Badge>
         </View>

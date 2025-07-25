@@ -22,9 +22,9 @@ export default function SplashScreen() {
       className="flex-1 items-center justify-center"
     >
       <View className="items-center">
-        <View className="w-40 h-32 items-center justify-center">
+        <View className="w- h-32 items-center justify-center">
             <Image
-              source={require('@/assets/images/logo-sigap.webp')}
+              source={require('@/assets/images/sigap-no-bg.png')}
               className="w-[120px] h-[80px]"
               resizeMode="contain"
             />

@@ -47,15 +47,15 @@ const initialMockComments: { [key: string]: Comment[] } = {
 
 // Mock data, sama seperti di proyek Next.js
 const mockReports = [
-  { id: "1", title: "Jalan Berlubang di Jl. Sudirman", description: "Lubang besar di tengah jalan yang membahayakan pengendara", location: "Jl. Sudirman No. 123", time: "2 jam yang lalu", status: "new", upvotes: 12, comments: 3, reporter: "Ahmad S.", image: require('../assets/images/daffa.jpg') },
-  { id: "2", title: "Lampu Jalan Mati", description: "Lampu penerangan jalan sudah mati sejak 3 hari", location: "Jl. Merdeka Raya", time: "4 jam yang lalu", status: "progress", upvotes: 8, comments: 1, reporter: "Siti M.", image: require('../assets/images/dylan.jpg') },
-  { id: "3", title: "Tumpukan Sampah", description: "Sampah menumpuk dan tidak diangkut selama seminggu", location: "Jl. Kebon Jeruk", time: "6 jam yang lalu", status: "completed", upvotes: 15, comments: 5, reporter: "Budi P.", image: require('../assets/images/opal.jpg') },
+  { id: "1", title: "Jalan Berlubang", description: "Lubang besar di tengah jalan yang membahayakan pengendara", location: "Jl. Sudirman No. 123", time: "2 jam yang lalu", status: "new", upvotes: 12, comments: 3, reporter: "Ahmad S.", image: require('../assets/images/jalan-rusak.webp') },
+  { id: "2", title: "Lampu Jalan Mati", description: "Lampu penerangan jalan sudah mati sejak 3 hari", location: "Jl. Merdeka Raya", time: "4 jam yang lalu", status: "progress", upvotes: 8, comments: 1, reporter: "Siti M.", image: require('../assets/images/lampu-jalan.jpg') },
+  { id: "3", title: "Tumpukan Sampah", description: "Sampah menumpuk dan tidak diangkut selama seminggu", location: "Jl. Kebon Jeruk", time: "6 jam yang lalu", status: "completed", upvotes: 15, comments: 5, reporter: "Budi P.", image: require('../assets/images/tumpukan-sampah.jpg') },
 ];
 
 const getStatusBadge = (status: string) => {
   switch (status) {
     case "new":
-      return <Badge className="bg-blue-100"><Text className="text-blue-700 text-sm font-bold">Baru</Text></Badge>;
+      return <Badge className="bg-red-100"><Text className="text-red-700 text-sm font-bold">Pending</Text></Badge>;
     case "progress":
       return <Badge className="bg-yellow-100"><Text className="text-yellow-700 text-sm font-bold">Dikerjakan</Text></Badge>;
     case "completed":
@@ -68,7 +68,7 @@ const getStatusBadge = (status: string) => {
 const getStatusIcon = (status: string) => {
   switch (status) {
     case "new":
-      return <AlertTriangle size={16} color="#1976D2" />;
+      return <AlertTriangle size={16} color="#D32F2F" />;
     case "progress":
       return <Clock size={16} color="#FBC02D" />;
     case "completed":
@@ -200,6 +200,8 @@ export default function ReportFeed() {
                 </View>
               </Pressable>
 
+              <View className="w-px bg-gray-100" />
+
               {/* Tombol Komentar */}
               <Pressable 
                 onPress={() => handleCommentPress(report)} 
@@ -211,6 +213,8 @@ export default function ReportFeed() {
                 </View>
               </Pressable>
 
+              <View className="w-px bg-gray-100" />
+              
               {/* Tombol Share */}
               <Pressable 
                 onPress={() => handleShare(report)}

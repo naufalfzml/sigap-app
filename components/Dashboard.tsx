@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, StatusBar, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import FloatingActionButton from './FloatingActionButton';
 import InteractiveMap from './InteractiveMap';
@@ -14,9 +14,11 @@ export default function Dashboard() {
   const router = useRouter();
 
   return (
+    <>
+    <StatusBar backgroundColor="white" barStyle="dark-content" />
     <SafeAreaView className="flex-1 bg-sigap-teal">
       {/* Header dengan User Stats */}
-      <View className="bg-white/90 p-4 border-b border-sigap-lightblue/20">
+      <View className="bg-white p-4 border-b border-sigap-lightblue/20">
         <UserStats />
       </View>
 
@@ -87,5 +89,6 @@ export default function Dashboard() {
       {/* Floating Action Button */}
       <FloatingActionButton />
     </SafeAreaView>
+    </>
   );
 }
