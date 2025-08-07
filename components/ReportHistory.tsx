@@ -1,5 +1,4 @@
 import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { useRouter } from 'expo-router';
 import { ArrowLeft, Eye, MapPin } from 'lucide-react-native';
@@ -20,7 +19,7 @@ export default function ReportHistory() {
   return (
     <>
     <StatusBar backgroundColor="white" barStyle="dark-content" />
-      <SafeAreaView className="flex-1 bg-sigap-lightteal">
+      <SafeAreaView className="flex-1 bg-sigap-teal">
         {/* Header */}
         <View className="p-4 border-b border-gray-200 bg-white flex-row items-center shadow-sm">
           <Pressable 

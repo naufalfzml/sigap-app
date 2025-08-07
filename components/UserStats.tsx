@@ -17,7 +17,7 @@ export default function UserStats() {
           <Text className="text-sigap-dark font-semibold text-lg mx-2">Dylansius Putra</Text>
           <Badge className="bg-sigap-blue px-2.5 mt-1 mx-2" textClassName="text-white text-xs">
             <View className="flex-row items-center">
-              <Trophy size={11} color="white" className="" />
+              <Trophy size={11} color="gold" className="" />
               <Text className="text-white text-xs font-bold"> Pahlawan Kota</Text>
             </View>
           </Badge>

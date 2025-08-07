@@ -23,7 +23,7 @@ export default function Dashboard() {
       </View>
 
       {/* Gunakan ScrollView agar konten bisa di-scroll jika lebih panjang dari layar */}
-      <ScrollView className="px-2">
+      <ScrollView>
         {/* Tombol Navigasi Utama */}
         <View className="space-y-4 px-4 mt-2">
           <View className="flex-row gap-2 my-2">

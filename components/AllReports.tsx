@@ -55,7 +55,7 @@ const ListHeader = ({ searchQuery, setSearchQuery, selectedFilter, setSelectedFi
   ];
 
   return (
-    <View className="p-4 bg-sigap-lightteal">
+    <View className="p-4 bg-sigap-teal">
       {/* Search Input */}
       <View className="flex-row items-center bg-white rounded-lg px-3 mb-3 border border-gray-300 shadow-sm">
         <Search color="#6B7280" size={20} />
@@ -127,7 +127,7 @@ export default function AllReports() {
         </View>
         
         {/* Area konten dengan background yang berbeda */}
-        <View className="flex-1 bg-sigap-lightteal">
+        <View className="flex-1 bg-sigap-teal">
           {/* Daftar Laporan dengan FlashList */}
           <FlashList
             data={filteredReports}

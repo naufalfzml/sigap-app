@@ -1,15 +1,32 @@
-import React, { JSX, useState } from "react";
-import { useRouter } from "expo-router";
-import { 
-  View, Text, StyleSheet, ScrollView, TouchableOpacity, 
-  TextInput, Image, Modal, SafeAreaView, StatusBar, ActivityIndicator 
-} from "react-native";
-import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { 
-  Search, ArrowLeft, Smartphone, Zap, Wifi, Gift, Coffee, 
-  Star, Clock, CheckCircle, AlertCircle, LucideProps
+import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from "expo-router";
+import {
+    AlertCircle,
+    ArrowLeft,
+    CheckCircle,
+    Clock,
+    Coffee,
+    Gift,
+    LucideProps,
+    Search,
+    Smartphone,
+    Trophy,
+    Wifi,
+    Zap
 } from 'lucide-react-native';
+import React, { JSX, useState } from "react";
+import {
+    ActivityIndicator,
+    Image, Modal, SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
+} from "react-native";
 
 // --- Type Definitions ---
 
@@ -48,7 +65,6 @@ interface Category {
 // --- Mock Data ---
 
 const rewards: Reward[] = [
-  // ... (data rewards yang sama seperti sebelumnya)
   { id: 1, name: "Pulsa Telkomsel 25K", category: "pulsa", provider: "Telkomsel", points: 2500, originalPrice: 27000, discount: 7, stock: 50, popular: true, image: "https://via.placeholder.com/60/FF5733/FFFFFF?text=Telkomsel", description: "Pulsa reguler Telkomsel 25.000" },
   { id: 2, name: "Pulsa XL 50K", category: "pulsa", provider: "XL", points: 4800, originalPrice: 52000, discount: 8, stock: 30, popular: false, image: "https://via.placeholder.com/60/2986CC/FFFFFF?text=XL", description: "Pulsa reguler XL 50.000" },
   { id: 3, name: "Pulsa Indosat 10K", category: "pulsa", provider: "Indosat", points: 1000, originalPrice: 11000, discount: 9, stock: 100, popular: true, image: "https://via.placeholder.com/60/FFC300/000000?text=Indosat", description: "Pulsa reguler Indosat 10.000" },
@@ -58,12 +74,9 @@ const rewards: Reward[] = [
   { id: 7, name: "Kuota Smartfren 5GB", category: "kuota", provider: "Smartfren", points: 2200, originalPrice: 25000, discount: 12, stock: 35, popular: false, image: "https://via.placeholder.com/60/E6007E/FFFFFF?text=Smartfren", description: "Kuota internet Smartfren 5GB 30 hari" },
   { id: 8, name: "Voucher Grab 25K", category: "voucher", provider: "Grab", points: 2400, originalPrice: 25000, discount: 4, stock: 25, popular: true, image: "https://via.placeholder.com/60/00B14F/FFFFFF?text=Grab", description: "Voucher Grab senilai 25.000" },
   { id: 9, name: "Voucher GoFood 20K", category: "voucher", provider: "GoFood", points: 1900, originalPrice: 20000, discount: 5, stock: 45, popular: false, image: "https://via.placeholder.com/60/ED2E26/FFFFFF?text=GoFood", description: "Voucher GoFood senilai 20.000" },
-  { id: 10, name: "Starbucks 50K", category: "fnb", provider: "Starbucks", points: 4700, originalPrice: 50000, discount: 6, stock: 20, popular: false, image: "https://via.placeholder.com/60/006241/FFFFFF?text=Starbucks", description: "Voucher Starbucks senilai 50.000" },
-  { id: 11, name: "KFC 30K", category: "fnb", provider: "KFC", points: 2800, originalPrice: 30000, discount: 7, stock: 30, popular: true, image: "https://via.placeholder.com/60/A30A09/FFFFFF?text=KFC", description: "Voucher KFC senilai 30.000" }
 ];
 
 const transactionHistory: Transaction[] = [
-    // ... (data transactionHistory yang sama seperti sebelumnya)
   { id: "TXN001", rewardName: "Pulsa Telkomsel 25K", points: 2500, status: "completed", date: "2024-01-15", phoneNumber: "081234567890" },
   { id: "TXN002", rewardName: "Token PLN 20K", points: 2000, status: "processing", date: "2024-01-14", phoneNumber: "123456789012" },
   { id: "TXN003", rewardName: "Kuota XL 3GB", points: 1500, status: "failed", date: "2024-01-13", phoneNumber: "081234567890" }
@@ -78,8 +91,6 @@ const categories: Category[] = [
   { id: "fnb", name: "F&B", icon: Coffee }
 ];
 
-// --- Component ---
-
 export default function RewardExchange(): JSX.Element {
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -90,7 +101,7 @@ export default function RewardExchange(): JSX.Element {
   const [showHistory, setShowHistory] = useState<boolean>(false);
   const [isModalVisible, setModalVisible] = useState<boolean>(false);
 
-  const userPoints: number = 2400;
+  const userPoints: number = 2450;
 
   const filteredRewards: Reward[] = rewards.filter(reward => {
     const matchesCategory = selectedCategory === "all" || reward.category === selectedCategory;
@@ -161,8 +172,9 @@ export default function RewardExchange(): JSX.Element {
           <View>
             <Text style={styles.pointsLabel}>Total Poin</Text>
             <Text style={styles.pointsValue}>{userPoints.toLocaleString()}</Text>
-            <View style={styles.badge}>
-              <Text style={styles.badgeText}>⭐ Pahlawan Kota</Text>
+            <View style={styles.badge} className='flex-row items-center'>
+              <Trophy size={11} color="gold" />
+              <Text style={styles.badgeText}> Pahlawan Kota</Text>
             </View>
           </View>
           <View style={{ alignItems: 'flex-end' }}>
@@ -297,7 +309,7 @@ export default function RewardExchange(): JSX.Element {
   );
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={styles.safeArea} className='mt-10'>
       <StatusBar barStyle="dark-content" backgroundColor="white" />
       {/* Header */}
       <View style={styles.header}>
@@ -305,7 +317,7 @@ export default function RewardExchange(): JSX.Element {
           <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
             <ArrowLeft size={20} color="#297dd4" />
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>Tukar Poin</Text>
+          <Text className='text-lg font-bold text-sigap-dark'>Tukar Poin</Text>
         </View>
         <TouchableOpacity onPress={() => setShowHistory(!showHistory)} style={styles.historyButton}>
             <Text style={styles.historyButtonText}>{showHistory ? 'Kembali' : 'Riwayat'}</Text>
@@ -407,7 +419,6 @@ const styles = StyleSheet.create({
   headerLeft: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   backButton: { padding: 4 },
   logo: { width: 32, height: 32, borderRadius: 8 },
-  headerTitle: { fontSize: 18, fontWeight: 'bold', color: '#0b0f2c' },
   historyButton: {
     paddingVertical: 6,
     paddingHorizontal: 12,
@@ -422,7 +433,7 @@ const styles = StyleSheet.create({
   pointsLabel: { color: 'rgba(255,255,255,0.8)', fontSize: 14 },
   pointsValue: { color: 'white', fontSize: 32, fontWeight: 'bold' },
   badge: { backgroundColor: 'rgba(255,255,255,0.2)', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 12, alignSelf: 'flex-start', marginTop: 8 },
-  badgeText: { color: 'white', fontSize: 12 },
+  badgeText: { color: 'white', fontSize: 12, fontWeight: 'bold' },
   searchContainer: { position: 'relative', marginBottom: 16 },
   searchIcon: { position: 'absolute', left: 12, top: 14, zIndex: 1 },
   searchInput: {
