@@ -6,7 +6,6 @@ import {
     ArrowLeft,
     CheckCircle,
     Clock,
-    Coffee,
     Gift,
     LucideProps,
     Search,
@@ -34,26 +33,26 @@ type RewardCategory = 'pulsa' | 'listrik' | 'kuota' | 'voucher' | 'fnb';
 type TransactionStatus = 'completed' | 'processing' | 'failed';
 
 interface Reward {
-  id: number;
-  name: string;
-  category: RewardCategory;
-  provider: string;
-  points: number;
-  originalPrice: number;
-  discount: number;
-  stock: number;
-  popular: boolean;
-  image: string;
-  description: string;
+    id: number;
+    name: string;
+    category: RewardCategory;
+    provider: string;
+    points: number;
+    originalPrice: number;
+    discount: number;
+    stock: number;
+    popular: boolean;
+    image: any;
+    description: string;
 }
 
 interface Transaction {
-  id: string;
-  rewardName: string;
-  points: number;
-  status: TransactionStatus;
-  date: string;
-  phoneNumber: string;
+    id: string;
+    rewardName: string;
+    points: number;
+    status: TransactionStatus;
+    date: string;
+    phoneNumber: string;
 }
 
 interface Category {
@@ -62,8 +61,6 @@ interface Category {
     icon: React.FC<LucideProps>;
 }
 
-// --- Mock Data ---
-
 const rewards: Reward[] = [
   { id: 1, name: "Pulsa Telkomsel 25K", category: "pulsa", provider: "Telkomsel", points: 2500, originalPrice: 27000, discount: 7, stock: 50, popular: true, image: "https://via.placeholder.com/60/FF5733/FFFFFF?text=Telkomsel", description: "Pulsa reguler Telkomsel 25.000" },
   { id: 2, name: "Pulsa XL 50K", category: "pulsa", provider: "XL", points: 4800, originalPrice: 52000, discount: 8, stock: 30, popular: false, image: "https://via.placeholder.com/60/2986CC/FFFFFF?text=XL", description: "Pulsa reguler XL 50.000" },
@@ -71,9 +68,9 @@ const rewards: Reward[] = [
   { id: 4, name: "Token PLN 20K", category: "listrik", provider: "PLN", points: 2000, originalPrice: 22000, discount: 9, stock: 75, popular: true, image: "https://via.placeholder.com/60/003366/FFFFFF?text=PLN", description: "Token listrik PLN 20.000" },
   { id: 5, name: "Token PLN 50K", category: "listrik", provider: "PLN", points: 4900, originalPrice: 52000, discount: 6, stock: 40, popular: false, image: "https://via.placeholder.com/60/003366/FFFFFF?text=PLN", description: "Token listrik PLN 50.000" },
   { id: 6, name: "Kuota XL 3GB", category: "kuota", provider: "XL", points: 1500, originalPrice: 17000, discount: 12, stock: 60, popular: true, image: "https://via.placeholder.com/60/2986CC/FFFFFF?text=XL", description: "Kuota internet XL 3GB 30 hari" },
-  { id: 7, name: "Kuota Smartfren 5GB", category: "kuota", provider: "Smartfren", points: 2200, originalPrice: 25000, discount: 12, stock: 35, popular: false, image: "https://via.placeholder.com/60/E6007E/FFFFFF?text=Smartfren", description: "Kuota internet Smartfren 5GB 30 hari" },
-  { id: 8, name: "Voucher Grab 25K", category: "voucher", provider: "Grab", points: 2400, originalPrice: 25000, discount: 4, stock: 25, popular: true, image: "https://via.placeholder.com/60/00B14F/FFFFFF?text=Grab", description: "Voucher Grab senilai 25.000" },
-  { id: 9, name: "Voucher GoFood 20K", category: "voucher", provider: "GoFood", points: 1900, originalPrice: 20000, discount: 5, stock: 45, popular: false, image: "https://via.placeholder.com/60/ED2E26/FFFFFF?text=GoFood", description: "Voucher GoFood senilai 20.000" },
+  { id: 7, name: "Kuota Smartfren 5GB", category: "kuota", provider: "Smartfren", points: 2200, originalPrice: 25000, discount: 12, stock: 35, popular: false, image: require("../assets/images/smartfren.png"), description: "Kuota internet Smartfren 5GB 30 hari" },
+  { id: 8, name: "Voucher Grab 25K", category: "voucher", provider: "Grab", points: 2400, originalPrice: 25000, discount: 4, stock: 25, popular: true, image:  require("../assets/images/grab.png"), description: "Voucher Grab senilai 25.000" },
+  { id: 9, name: "Voucher GoFood 20K", category: "voucher", provider: "GoFood", points: 1900, originalPrice: 20000, discount: 5, stock: 45, popular: false, image: require("../assets/images/gofood.png") , description: "Voucher GoFood senilai 20.000" },
 ];
 
 const transactionHistory: Transaction[] = [
@@ -88,7 +85,6 @@ const categories: Category[] = [
   { id: "listrik", name: "Token Listrik", icon: Zap },
   { id: "kuota", name: "Kuota", icon: Wifi },
   { id: "voucher", name: "Voucher", icon: Gift },
-  { id: "fnb", name: "F&B", icon: Coffee }
 ];
 
 export default function RewardExchange(): JSX.Element {
@@ -225,11 +221,14 @@ export default function RewardExchange(): JSX.Element {
             if (!isAffordable) buttonText = "Poin Kurang";
             if (isOutOfStock) buttonText = "Habis";
 
+            const imageSource = typeof reward.image === 'string'
+             ? { uri: reward.image }
+             : reward.image;
             return (
               <View key={reward.id} style={styles.rewardCard}>
                 <View style={{ flexDirection: 'row', gap: 16 }}>
                   <View>
-                    <Image source={{ uri: reward.image }} style={styles.rewardImage} />
+                    <Image source={ imageSource } style={styles.rewardImage} />
                     {reward.popular && (
                       <View style={styles.popularBadge}>
                         <Text style={styles.popularBadgeText}>🔥</Text>
@@ -343,7 +342,7 @@ export default function RewardExchange(): JSX.Element {
               <Text style={styles.modalTitle}>Konfirmasi Penukaran</Text>
               
               <View style={styles.modalRewardInfo}>
-                  <Image source={{ uri: selectedReward.image }} style={{width: 50, height: 50, borderRadius: 8}} />
+                  <Image source={typeof selectedReward.image === 'string' ? { uri: selectedReward.image } : selectedReward.image } style={{width: 50, height: 50, borderRadius: 8}} />
                   <View>
                       <Text style={styles.modalRewardName}>{selectedReward.name}</Text>
                       <Text style={styles.modalRewardPoints}>{selectedReward.points.toLocaleString()} poin</Text>

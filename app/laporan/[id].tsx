@@ -81,7 +81,7 @@ const mockReports: Report[] = [
     id: "1", 
     title: "Jalan Berlubang di Jl. Sudirman", 
     description: "Lubang besar di tengah jalan yang membahayakan pengendara roda dua maupun empat. Perlu penanganan segera sebelum ada korban jiwa. Lubang ini sudah ada sejak beberapa minggu lalu dan semakin membesar karena hujan.", 
-    location: "Jl. Sudirman No. 123, Jakarta Pusat", 
+    location: "Jl. Sudirman No. 123, Surakarta", 
     time: "2 jam yang lalu", 
     status: "new", 
     upvotes: 12, 
