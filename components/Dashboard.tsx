@@ -47,7 +47,7 @@ export default function Dashboard() {
             <Button
               variant="outline"
               className="flex-1 bg-white"
-              onPress={() => router.push('/(tabs)/tukar-poin')}
+              onPress={() => router.push('/tukar-poin')}
             >
               <Text className="text-sigap-blue font-semibold">Tukar Poin</Text>
             </Button>
