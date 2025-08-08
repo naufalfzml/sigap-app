@@ -100,7 +100,7 @@ const mockReports: Report[] = [
     location: "Jl. Merdeka Raya No. 45", 
     time: "4 jam yang lalu", 
     status: "progress", 
-    upvotes: 8, 
+    upvotes: 8,
     comments: 1, 
     reporter: "Siti Mariam", 
     images: [
@@ -342,7 +342,7 @@ export default function ReportDetail() {
   }
 
   return (
-    <SafeAreaView className="flex-1" style={{ backgroundColor: colors.sigapLightTeal }}>
+    <SafeAreaView className="flex-1" style={{ backgroundColor: 'white' }}>
       <View className="bg-white px-4 py-3 shadow-sm">
         <View className="flex-row items-center">
           <Pressable onPress={() => router.back()} className="p-2 -ml-2">
@@ -357,7 +357,7 @@ export default function ReportDetail() {
         </View>
       </View>
 
-      <ScrollView className="flex-1">
+      <ScrollView className="flex-1 bg-sigap-lightteal">
         {/* Photo Gallery */}
         <PhotoGallery images={report.images} />
 

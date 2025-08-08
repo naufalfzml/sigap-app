@@ -442,10 +442,7 @@ export default function ReportWizard() {
         }}>
           Konfirmasi lokasi dan berikan rincian laporan
         </Text>
-
-        {/* ====================================================== */}
-        {/* ============ INPUT JUDUL LAPORAN DITAMBAHKAN ========= */}
-        {/* ====================================================== */}
+        
         <View style={{ marginBottom: 16 }}>
           <Text style={{
             fontSize: 16,
@@ -910,12 +907,13 @@ export default function ReportWizard() {
     );
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#7ED9F8' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
       {/* Header */}
       <View style={{
-        backgroundColor: 'rgba(255,255,255,0.9)',
+        backgroundColor: '#FFFFFF',
         borderBottomWidth: 1,
-        borderBottomColor: 'rgba(77, 177, 236, 0.2)'
+        borderBottomColor: '#FFFFFF', 
+        marginBottom: 9
       }}>
         <View style={{
           flexDirection: 'row',
@@ -949,7 +947,7 @@ export default function ReportWizard() {
         {renderProgressBar()}
       </View>
 
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1, backgroundColor:'#7ED9F8' }}>
         <View style={{
           margin: 16,
           backgroundColor: 'white',

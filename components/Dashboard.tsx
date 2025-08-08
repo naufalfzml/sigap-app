@@ -16,14 +16,14 @@ export default function Dashboard() {
   return (
     <>
     <StatusBar backgroundColor="white" barStyle="dark-content" />
-    <SafeAreaView className="flex-1 bg-sigap-teal">
+    <SafeAreaView className="bg-white ">
       {/* Header dengan User Stats */}
       <View className="bg-white p-4 border-b border-sigap-lightblue/20">
         <UserStats />
       </View>
 
       {/* Gunakan ScrollView agar konten bisa di-scroll jika lebih panjang dari layar */}
-      <ScrollView>
+      <ScrollView className="bg-sigap-teal">
         {/* Tombol Navigasi Utama */}
         <View className="space-y-4 px-4 mt-2">
           <View className="flex-row gap-2 my-2">

@@ -19,7 +19,7 @@ export default function ReportHistory() {
   return (
     <>
     <StatusBar backgroundColor="white" barStyle="dark-content" />
-      <SafeAreaView className="flex-1 bg-sigap-teal">
+      <SafeAreaView className="flex-1 bg-white">
         {/* Header */}
         <View className="p-4 border-b border-gray-200 bg-white flex-row items-center shadow-sm">
           <Pressable 
@@ -34,7 +34,7 @@ export default function ReportHistory() {
         </View>
 
         {/* Content */}
-        <ScrollView className="p-4" showsVerticalScrollIndicator={false}>
+        <ScrollView className="p-4 bg-sigap-teal" showsVerticalScrollIndicator={false}>
           {mockReports.map((report) => (
             <Card key={report.id} className="p-4 mb-4 shadow-sm">
               {/* Report Title */}
