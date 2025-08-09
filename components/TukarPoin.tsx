@@ -2,29 +2,29 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from "expo-router";
 import {
-    AlertCircle,
-    ArrowLeft,
-    CheckCircle,
-    Clock,
-    Gift,
-    LucideProps,
-    Search,
-    Smartphone,
-    Trophy,
-    Wifi,
-    Zap
+  AlertCircle,
+  ArrowLeft,
+  CheckCircle,
+  Clock,
+  Gift,
+  LucideProps,
+  Search,
+  Smartphone,
+  Trophy,
+  Wifi,
+  Zap
 } from 'lucide-react-native';
 import React, { JSX, useState } from "react";
 import {
-    ActivityIndicator,
-    Image, Modal, SafeAreaView,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View
+  ActivityIndicator,
+  Image, Modal, SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from "react-native";
 
 // --- Type Definitions ---
@@ -62,12 +62,12 @@ interface Category {
 }
 
 const rewards: Reward[] = [
-  { id: 1, name: "Pulsa Telkomsel 25K", category: "pulsa", provider: "Telkomsel", points: 2500, originalPrice: 27000, discount: 7, stock: 50, popular: true, image: "https://via.placeholder.com/60/FF5733/FFFFFF?text=Telkomsel", description: "Pulsa reguler Telkomsel 25.000" },
-  { id: 2, name: "Pulsa XL 50K", category: "pulsa", provider: "XL", points: 4800, originalPrice: 52000, discount: 8, stock: 30, popular: false, image: "https://via.placeholder.com/60/2986CC/FFFFFF?text=XL", description: "Pulsa reguler XL 50.000" },
-  { id: 3, name: "Pulsa Indosat 10K", category: "pulsa", provider: "Indosat", points: 1000, originalPrice: 11000, discount: 9, stock: 100, popular: true, image: "https://via.placeholder.com/60/FFC300/000000?text=Indosat", description: "Pulsa reguler Indosat 10.000" },
-  { id: 4, name: "Token PLN 20K", category: "listrik", provider: "PLN", points: 2000, originalPrice: 22000, discount: 9, stock: 75, popular: true, image: "https://via.placeholder.com/60/003366/FFFFFF?text=PLN", description: "Token listrik PLN 20.000" },
-  { id: 5, name: "Token PLN 50K", category: "listrik", provider: "PLN", points: 4900, originalPrice: 52000, discount: 6, stock: 40, popular: false, image: "https://via.placeholder.com/60/003366/FFFFFF?text=PLN", description: "Token listrik PLN 50.000" },
-  { id: 6, name: "Kuota XL 3GB", category: "kuota", provider: "XL", points: 1500, originalPrice: 17000, discount: 12, stock: 60, popular: true, image: "https://via.placeholder.com/60/2986CC/FFFFFF?text=XL", description: "Kuota internet XL 3GB 30 hari" },
+  { id: 1, name: "Pulsa Telkomsel 25K", category: "pulsa", provider: "Telkomsel", points: 2500, originalPrice: 27000, discount: 7, stock: 50, popular: true, image: require("../assets/images/telkomsel.png"), description: "Pulsa reguler Telkomsel 25.000" },
+  { id: 2, name: "Pulsa XL 50K", category: "pulsa", provider: "XL", points: 4800, originalPrice: 52000, discount: 8, stock: 30, popular: false, image: require("../assets/images/xl.png"), description: "Pulsa reguler XL 50.000" },
+  { id: 3, name: "Pulsa Indosat 10K", category: "pulsa", provider: "Indosat", points: 1000, originalPrice: 11000, discount: 9, stock: 100, popular: true, image: require("../assets/images/indosat.png"), description: "Pulsa reguler Indosat 10.000" },
+  { id: 4, name: "Token PLN 20K", category: "listrik", provider: "PLN", points: 2000, originalPrice: 22000, discount: 9, stock: 75, popular: true, image: require("../assets/images/pln.png"), description: "Token listrik PLN 20.000" },
+  { id: 5, name: "Token PLN 50K", category: "listrik", provider: "PLN", points: 4900, originalPrice: 52000, discount: 6, stock: 40, popular: false, image: require("../assets/images/pln.png"), description: "Token listrik PLN 50.000" },
+  { id: 6, name: "Kuota XL 3GB", category: "kuota", provider: "XL", points: 1500, originalPrice: 17000, discount: 12, stock: 60, popular: true, image: require("../assets/images/xl.png"), description: "Kuota internet XL 3GB 30 hari" },
   { id: 7, name: "Kuota Smartfren 5GB", category: "kuota", provider: "Smartfren", points: 2200, originalPrice: 25000, discount: 12, stock: 35, popular: false, image: require("../assets/images/smartfren.png"), description: "Kuota internet Smartfren 5GB 30 hari" },
   { id: 8, name: "Voucher Grab 25K", category: "voucher", provider: "Grab", points: 2400, originalPrice: 25000, discount: 4, stock: 25, popular: true, image:  require("../assets/images/grab.png"), description: "Voucher Grab senilai 25.000" },
   { id: 9, name: "Voucher GoFood 20K", category: "voucher", provider: "GoFood", points: 1900, originalPrice: 20000, discount: 5, stock: 45, popular: false, image: require("../assets/images/gofood.png") , description: "Voucher GoFood senilai 20.000" },

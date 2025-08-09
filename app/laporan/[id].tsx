@@ -55,6 +55,8 @@ type Report = {
   reporter: string;
   images: ImageSourcePropType[]; // Changed to array for multiple images
   category: ReportCategory;
+  completionNote?: string;
+  completionImages?: ImageSourcePropType[];
 };
 
 // Konfigurasi kategori dengan icon dan warna
@@ -120,7 +122,12 @@ const mockReports: Report[] = [
     comments: 5, 
     reporter: "Budi Prakoso", 
     images: [require('../../assets/images/tumpukan-sampah.jpg')],
-    category: "lingkungan"
+    category: "lingkungan",
+    completionNote: "Tim kebersihan telah berhasil membersihkan area dan mengangkut seluruh sampah. Lokasi kini sudah bersih dan aman bagi warga sekitar.",
+    completionImages: [
+      require('../../assets/images/sampah-bersih.png'),
+      require('../../assets/images/sampah-bersih2.png')
+    ]
   }
 ];
 
@@ -405,6 +412,31 @@ export default function ReportDetail() {
               <Text className="text-md font-bold text-black mb-3">Deskripsi Masalah</Text>
               <Text className="text-gray-800 leading-relaxed text-base">{report.description}</Text>
             </View>
+
+            {report.status === 'completed' && (
+              <View className="mt-8 pt-6 border-t border-gray-200">
+                <Text className="text-md font-bold text-green-700 mb-3">Tindak Lanjut & Bukti Penyelesaian</Text>
+                
+                {/* Catatan Penyelesaian */}
+                {report.completionNote && (
+                  <View className="border-l-4 border-green-500 pl-4 mb-4 bg-green-50/50 p-3 rounded-r-lg">
+                    <Text className="text-gray-700 italic">"{report.completionNote}"</Text>
+                    <Text className="text-xs text-gray-500 mt-2 font-medium">- Petugas Terkait</Text>
+                  </View>
+                )}
+
+                {/* Galeri Foto Bukti Penyelesaian */}
+                {report.completionImages && report.completionImages.length > 0 && (
+                  <View>
+                    <Text className="text-sm font-semibold text-gray-800 mb-2">Dokumentasi Foto:</Text>
+                    {/* Kita bisa gunakan lagi komponen PhotoGallery yang sudah ada! */}
+                    <View className="rounded-lg overflow-hidden">
+                      <PhotoGallery images={report.completionImages} />
+                    </View>
+                  </View>
+                )}
+              </View>
+            )}
           </View>
 
           {/* Action Buttons */}
